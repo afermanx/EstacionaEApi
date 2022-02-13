@@ -1,25 +1,44 @@
-const { Board, Led } = require("johnny-five");
-const board = new Board();
+var five = require("johnny-five"),
+  board, photoresistor;
+ 
+  board = new five.Board({port :'COM5'});
 
-board.on("ready", () => {
-  const anode = new Led.RGB({
-    pins: {
-      red: 6,
-      green: 5,
-      blue: 3
-    },
-    isAnode: true
+
+
+board.on("ready", function() {
+
+   //leds
+   const G = new five.Led(13);
+
+  vaga1 = new five.Sensor({
+    pin: "A0",
+    freq: 250
   });
 
-  // Add led to REPL (optional)
-  board.repl.inject({ anode });
 
-  // Turn it on and set the initial color
-  anode.on();
-  anode.color("#FF0000");
+  vaga1.on("data", function() {
+    console.log(this.value)
+    if(this.value < 1023 ){
+      
+    
+      G.off()
+    
+      // firebase.database().ref('VAGA1').set({
+      //   VAGA1:'on'
+        
+      // });
 
-  anode.blink(1000);
+    }else if(this.value >= 1023){     
+      G.on()
+      // firebase.database().ref('VAGA1').set({
+      //   VAGA1:'off'
+      // });
+      
+    
+    }
+    
+
+  });
+
 });
-
-
 console.log("Projeto EstacionaE Iniciado!");

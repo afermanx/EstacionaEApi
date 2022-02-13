@@ -1,16 +1,16 @@
 {
   "name": "estacionaeapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend estacionae",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js 300"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afermanx/EstacionaEApi.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/afermanx/EstacionaEApi#readme",
   "dependencies": {
-    "johnny-five": "^2.1.0"
-   
+    "firmata-io": "^2.3.0",
+    "johnny-five": "^2.1.0",
+    "serialport": "^9.2.8"
   }
 }
